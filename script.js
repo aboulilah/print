@@ -20,7 +20,7 @@ const CATEGORIES = [
   {
     id: "labels",
     name: "Labels & Stickers",
-    icon: ICONS.sticker,
+    img: "assets/stickers.png",
     price: "RM29",
     products: [
       { name: "Mirrorcoat Sticker", desc: "Reflective metallic finish for premium branding.", icon: ICONS.sticker },
@@ -33,7 +33,7 @@ const CATEGORIES = [
   {
     id: "banner",
     name: "Banner & Bunting",
-    icon: ICONS.banner,
+    img: "assets/banner.png",
     price: "RM35",
     products: [
       { name: "PVC Banner", desc: "Outdoor-ready banner, eyelets included.", icon: ICONS.banner },
@@ -45,7 +45,7 @@ const CATEGORIES = [
   {
     id: "booklet",
     name: "Booklets",
-    icon: ICONS.booklet,
+    img: "assets/booklets.png",
     price: "RM120",
     products: [
       { name: "Menu Booklet", desc: "Laminated, food-safe restaurant menus.", icon: ICONS.booklet },
@@ -57,7 +57,7 @@ const CATEGORIES = [
   {
     id: "packaging",
     name: "Packaging & Bags",
-    icon: ICONS.box,
+    img: "assets/packaging.png",
     price: "RM80",
     products: [
       { name: "Custom Printed Box", desc: "Retail & shipping boxes, your branding.", icon: ICONS.box },
@@ -69,7 +69,7 @@ const CATEGORIES = [
   {
     id: "design",
     name: "Design Services",
-    icon: ICONS.design,
+    img: "assets/branding.png",
     price: "Quote",
     products: [
       { name: "Logo Design", desc: "Original logo concepts for your brand.", icon: ICONS.design },
@@ -81,7 +81,7 @@ const CATEGORIES = [
   {
     id: "marketing",
     name: "Marketing Materials",
-    icon: ICONS.flyer,
+    img: "assets/marketing.png",
     price: "RM35",
     products: [
       { name: "Flyers", desc: "A5 / A6 flyers for promos & handouts.", icon: ICONS.flyer },
@@ -93,7 +93,7 @@ const CATEGORIES = [
   {
     id: "namecard",
     name: "Name Cards",
-    icon: ICONS.namecard,
+    img: "assets/namecard.png",
     price: "RM29",
     products: [
       { name: "Standard Name Card", desc: "Matte or glossy, fast turnaround.", icon: ICONS.namecard },
@@ -105,7 +105,7 @@ const CATEGORIES = [
   {
     id: "gifts",
     name: "Premium Gifts",
-    icon: ICONS.gift,
+    img: "assets/gifts.png",
     price: "RM45",
     products: [
       { name: "Custom Printed Mug", desc: "Full-colour print, your logo or design.", icon: ICONS.gift },
@@ -129,7 +129,7 @@ CATEGORIES.forEach(cat => {
   card.className = "cat-card";
   card.innerHTML = `
     <div class="cat-thumb">
-      <div style="color: var(--pink); opacity: 0.7;">${cat.icon}</div>
+      <img src="${cat.img}" alt="${cat.name}" loading="lazy">
     </div>
     <div class="cat-body">
       <h3>${cat.name}</h3>
