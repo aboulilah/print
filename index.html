@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Match Print Advertising — One Stop Printing Centre</title>
+<meta name="description" content="Pick a category, choose your product, and send your job straight to Match Print Advertising on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- header -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Match Print Advertising logo" class="logo-img">
+      <div class="brand-text">
+        <b>MATCH PRINT</b>
+        <span>One Stop Printing Centre</span>
+      </div>
+    </div>
+    <div class="topbar-cta">
+      <a class="tel-link" href="tel:+60108870233">+6010 887 0233</a>
+      <a class="wa-pill" href="https://wa.me/60108870233" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.1.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.3-.4.1-.1 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2 1 2.4c.1.2 1.6 2.4 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3Z"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><b>BEST QUALITY</b> · BEST SERVICE · BEST PRICE</div>
+      <h1>Turn your idea<br>into <span class="accent-pink">print</span>,<br>your <span class="accent-cyan">brand</span> into <span class="accent-pink">real</span>.</h1>
+      <p class="hero-sub">Pick a category, choose your product, and send the job straight to our sales team on WhatsApp. No forms to chase, no back-and-forth.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" id="hero-cta">Start Your Order</button>
+        <a class="btn-secondary" href="https://wa.me/60108870233" target="_blank" rel="noopener">Chat With Us</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="assets/gifts.png" alt="Custom branded merchandise and gifts" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- categories / interactive picker -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Categories</span>
+      <h2>What are you printing?</h2>
+      <p>Tap a category to see the products inside.</p>
+    </div>
+    <div class="cat-grid" id="cat-grid"></div>
+  </div>
+</section>
+
+<!-- products -->
+<section class="section section-alt" id="products-section" style="display:none;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Products</span>
+      <h2>Choose your product</h2>
+      <p class="product-context" id="product-context"></p>
+    </div>
+    <div class="prod-grid" id="prod-grid"></div>
+  </div>
+</section>
+
+<!-- order form (hidden by default, shown when product selected) -->
+<section class="section" id="form-section" style="display:none;">
+  <div class="container">
+    <div class="order-wrap">
+      <div class="order-summary">
+        <span>Category: <b id="summary-category">—</b></span>
+        <span>Product: <b id="summary-product">—</b></span>
+      </div>
+
+      <form id="order-form">
+        <div class="field-row">
+          <div class="field">
+            <label for="f-name">Full name</label>
+            <input id="f-name" type="text" placeholder="Ahmad Faiz" required>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone / WhatsApp number</label>
+            <input id="f-phone" type="tel" placeholder="+6012 345 6789" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-company">Company name (optional)</label>
+            <input id="f-company" type="text" placeholder="Your company">
+          </div>
+          <div class="field">
+            <label for="f-qty">Quantity needed</label>
+            <input id="f-qty" type="text" placeholder="e.g. 500 pcs">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-notes">Design idea / notes (optional)</label>
+          <textarea id="f-notes" placeholder="Size, colours, deadline — or mention you'll send reference images on WhatsApp"></textarea>
+        </div>
+        <div class="submit-row">
+          <button class="btn-primary" type="submit">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>
+            Send to WhatsApp
+          </button>
+          <span class="form-note">Opens WhatsApp with your job order pre-filled</span>
+        </div>
+      </form>
+      <p class="form-hint">or skip the form — chat live at +6010 887 0233</p>
+    </div>
+  </div>
+</section>
+
+<!-- our process -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our Process</span>
+      <h2>How we get you printed</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-item">
+        <div class="process-num">1</div>
+        <h3>Connect With Us</h3>
+        <p>Contact us through email, phone, or WhatsApp.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">2</div>
+        <h3>Analyse Requirements</h3>
+        <p>We understand exactly what you need in detail.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">3</div>
+        <h3>Price & Timeline</h3>
+        <p>We agree on cost and delivery schedule together.</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">4</div>
+        <h3>Delivered To You</h3>
+        <p>Quality printed materials sent to your door.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- why us -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Why Match Print</span>
+      <h2>Two decades of quality printing</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">⭐</div>
+        <h3>20 Years Experience</h3>
+        <p>Two decades in graphic design and printing.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🛡️</div>
+        <h3>MOF Registered</h3>
+        <p>Registered with the Ministry of Finance Malaysia.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🌱</div>
+        <h3>Eco-Friendly Materials</h3>
+        <p>Soy-based inks and energy-efficient machinery.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">🤝</div>
+        <h3>Client-Centric</h3>
+        <p>We listen closely and collaborate through the process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- our clients -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our Clients</span>
+      <h2>Trusted by leading brands</h2>
+    </div>
+    <div class="client-row">
+      <img src="https://matchprintadvertising.com/wp-content/uploads/2024/07/client_logo_bighbatch_08.svg" alt="Client logo" loading="lazy">
+      <img src="https://matchprintadvertising.com/wp-content/uploads/2024/07/client_logo_brainbunch_07.svg" alt="Client logo" loading="lazy">
+      <img src="https://matchprintadvertising.com/wp-content/uploads/2024/07/client_logo_junglehouse_02.svg" alt="Client logo" loading="lazy">
+      <img src="https://matchprintadvertising.com/wp-content/uploads/2024/07/client_logo_kyochon_04.svg" alt="Client logo" loading="lazy">
+      <img src="https://matchprintadvertising.com/wp-content/uploads/2024/07/client_logo_popmeal_01.svg" alt="Client logo" loading="lazy">
+      <img src="https://matchprintadvertising.com/wp-content/uploads/2024/07/client_logo_tonyromas_05.svg" alt="Client logo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="assets/logo.png" alt="Match Print Advertising logo" class="footer-logo">
+          <b>MATCH PRINT ADVERTISING</b>
+        </div>
+        <p>27, Jalan Bukit Serdang 10/6, Taman Bukit Serdang,<br>Seksyen 10, 43300 Seri Kembangan,<br>Selangor Darul Ehsan, Malaysia</p>
+        <div class="social-row">
+          <a href="https://www.facebook.com/matchprint2u" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/matchprint2u" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.tiktok.com/@matchprint.advertising" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="tel:+60108870233">+6010 887 0233</a>
+        <a href="mailto:matchprint2u@gmail.com">matchprint2u@gmail.com</a>
+        <a href="https://wa.me/60108870233" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <h5>Working Hours</h5>
+        <p>Mon – Fri: 9.00am – 6.00pm<br>Sat: 9.00am – 1.30pm<br>Sun & Public Holiday: Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Match Print Advertising · 002925438-M</span>
+      <span>Delivering all your printing needs</span>
+    </div>
+  </div>
+</footer>
+
+<!-- floating whatsapp -->
+<a class="float-wa" href="https://wa.me/60108870233" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
