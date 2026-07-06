@@ -118,9 +118,9 @@ const CATEGORIES = [
 
 const state = { category: null, product: null };
 
-// Hide products and form sections initially
-document.getElementById("products-section").classList.remove("show");
-document.getElementById("form-section").classList.remove("show");
+// Initialize sections visibility
+document.getElementById("products-section").style.display = "none";
+document.getElementById("form-section").style.display = "none";
 
 // ============= CATEGORY RENDERING =============
 const catGrid = document.getElementById("cat-grid");
@@ -149,8 +149,8 @@ function selectCategory(id, cardEl) {
 
   renderProducts();
 
-  document.getElementById("products-section").classList.add("show");
-  document.getElementById("form-section").classList.remove("show");
+  document.getElementById("products-section").style.display = "block";
+  document.getElementById("form-section").style.display = "none";
 
   setTimeout(() => {
     document.getElementById("products-section").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -191,7 +191,7 @@ function selectProduct(product, cardEl) {
 
   updateOrderSummary();
 
-  document.getElementById("form-section").classList.add("show");
+  document.getElementById("form-section").style.display = "block";
   setTimeout(() => {
     document.getElementById("form-section").scrollIntoView({ behavior: "smooth", block: "start" });
   }, 100);
