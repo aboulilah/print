@@ -23,11 +23,11 @@ const CATEGORIES = [
     img: "assets/stickers.png",
     price: "RM29",
     products: [
-      { name: "Mirrorcoat Sticker", desc: "Reflective metallic finish for premium branding.", icon: ICONS.sticker },
-      { name: "Transparent Sticker", desc: "Clear film, great for glass & packaging.", icon: ICONS.sticker },
-      { name: "Vinyl Sticker", desc: "Durable, weatherproof, cut to any shape.", icon: ICONS.sticker },
-      { name: "White PP Sticker", desc: "Opaque white base, sharp colour print.", icon: ICONS.sticker },
-      { name: "Silver Sticker", desc: "Metallic silver finish for a bold look.", icon: ICONS.sticker }
+      { name: "Mirrorcoat Sticker", desc: "Reflective metallic finish for premium branding.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1599080871172-6e87dc89f6ca?w=400&h=300&fit=crop" },
+      { name: "Transparent Sticker", desc: "Clear film, great for glass & packaging.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=400&h=300&fit=crop" },
+      { name: "Vinyl Sticker", desc: "Durable, weatherproof, cut to any shape.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1599080871172-6e87dc89f6ca?w=400&h=300&fit=crop" },
+      { name: "White PP Sticker", desc: "Opaque white base, sharp colour print.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=400&h=300&fit=crop" },
+      { name: "Silver Sticker", desc: "Metallic silver finish for a bold look.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1599080871172-6e87dc89f6ca?w=400&h=300&fit=crop" }
     ]
   },
   {
@@ -36,10 +36,10 @@ const CATEGORIES = [
     img: "assets/banner.png",
     price: "RM35",
     products: [
-      { name: "PVC Banner", desc: "Outdoor-ready banner, eyelets included.", icon: ICONS.banner },
-      { name: "Bunting Flags", desc: "String buntings for launches & events.", icon: ICONS.banner },
-      { name: "Roll-Up Banner", desc: "Portable stand banner for booths & events.", icon: ICONS.banner },
-      { name: "Event Backdrop", desc: "Large-format backdrop for stage & photo walls.", icon: ICONS.banner }
+      { name: "PVC Banner", desc: "Outdoor-ready banner, eyelets included.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1578208194509-b8f96cb89bed?w=400&h=300&fit=crop" },
+      { name: "Bunting Flags", desc: "String buntings for launches & events.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop" },
+      { name: "Roll-Up Banner", desc: "Portable stand banner for booths & events.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop" },
+      { name: "Event Backdrop", desc: "Large-format backdrop for stage & photo walls.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" }
     ]
   },
   {
@@ -48,10 +48,10 @@ const CATEGORIES = [
     img: "assets/booklets.png",
     price: "RM120",
     products: [
-      { name: "Menu Booklet", desc: "Laminated, food-safe restaurant menus.", icon: ICONS.booklet },
-      { name: "Company Profile Book", desc: "Multi-page saddle-stitch or perfect bound.", icon: ICONS.booklet },
-      { name: "Product Catalog", desc: "Full-colour catalog for your product range.", icon: ICONS.booklet },
-      { name: "Guide / Manual Book", desc: "Manuals, guides, workbook printing.", icon: ICONS.booklet }
+      { name: "Menu Booklet", desc: "Laminated, food-safe restaurant menus.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" },
+      { name: "Company Profile Book", desc: "Multi-page saddle-stitch or perfect bound.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=400&h=300&fit=crop" },
+      { name: "Product Catalog", desc: "Full-colour catalog for your product range.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1544716278-ca5e3af4abd8?w=400&h=300&fit=crop" },
+      { name: "Guide / Manual Book", desc: "Manuals, guides, workbook printing.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=400&h=300&fit=crop" }
     ]
   },
   {
@@ -60,10 +60,10 @@ const CATEGORIES = [
     img: "assets/packaging.png",
     price: "RM80",
     products: [
-      { name: "Custom Printed Box", desc: "Retail & shipping boxes, your branding.", icon: ICONS.box },
-      { name: "Paper Bag", desc: "Branded carrier bags, various sizes.", icon: ICONS.box },
-      { name: "Food / Product Pouch", desc: "Stand-up pouches for FnB & retail.", icon: ICONS.box },
-      { name: "Courier Bag", desc: "Custom-printed poly mailers.", icon: ICONS.box }
+      { name: "Custom Printed Box", desc: "Retail & shipping boxes, your branding.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop" },
+      { name: "Paper Bag", desc: "Branded carrier bags, various sizes.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop" },
+      { name: "Food / Product Pouch", desc: "Stand-up pouches for FnB & retail.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop" },
+      { name: "Courier Bag", desc: "Custom-printed poly mailers.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop" }
     ]
   },
   {
@@ -72,10 +72,10 @@ const CATEGORIES = [
     img: "assets/branding.png",
     price: "Quote",
     products: [
-      { name: "Logo Design", desc: "Original logo concepts for your brand.", icon: ICONS.design },
-      { name: "Brand Identity Package", desc: "Logo, colours, fonts & guidelines.", icon: ICONS.design },
-      { name: "Packaging Design", desc: "Print-ready artwork for box or label.", icon: ICONS.design },
-      { name: "Social Media Design Set", desc: "Templates for posts, stories & ads.", icon: ICONS.design }
+      { name: "Logo Design", desc: "Original logo concepts for your brand.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" },
+      { name: "Brand Identity Package", desc: "Logo, colours, fonts & guidelines.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" },
+      { name: "Packaging Design", desc: "Print-ready artwork for box or label.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" },
+      { name: "Social Media Design Set", desc: "Templates for posts, stories & ads.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" }
     ]
   },
   {
@@ -84,10 +84,10 @@ const CATEGORIES = [
     img: "assets/marketing.png",
     price: "RM35",
     products: [
-      { name: "Flyers", desc: "A5 / A6 flyers for promos & handouts.", icon: ICONS.flyer },
-      { name: "Brochures", desc: "Tri-fold or bi-fold, full colour.", icon: ICONS.flyer },
-      { name: "Table Calendar", desc: "Corporate desk calendars, custom design.", icon: ICONS.flyer },
-      { name: "Posters", desc: "A3 to large-format promotional posters.", icon: ICONS.flyer }
+      { name: "Flyers", desc: "A5 / A6 flyers for promos & handouts.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1554132633-11cf85ecf1c0?w=400&h=300&fit=crop" },
+      { name: "Brochures", desc: "Tri-fold or bi-fold, full colour.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=400&h=300&fit=crop" },
+      { name: "Table Calendar", desc: "Corporate desk calendars, custom design.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" },
+      { name: "Posters", desc: "A3 to large-format promotional posters.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop" }
     ]
   },
   {
@@ -96,10 +96,10 @@ const CATEGORIES = [
     img: "assets/namecard.png",
     price: "RM29",
     products: [
-      { name: "Standard Name Card", desc: "Matte or glossy, fast turnaround.", icon: ICONS.namecard },
-      { name: "Premium Textured Card", desc: "Cotton / linen stock, embossed feel.", icon: ICONS.namecard },
-      { name: "Metal Card", desc: "Stainless steel cards for a bold impression.", icon: ICONS.namecard },
-      { name: "QR Digital Name Card", desc: "Card with scannable digital profile.", icon: ICONS.namecard }
+      { name: "Standard Name Card", desc: "Matte or glossy, fast turnaround.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" },
+      { name: "Premium Textured Card", desc: "Cotton / linen stock, embossed feel.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" },
+      { name: "Metal Card", desc: "Stainless steel cards for a bold impression.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" },
+      { name: "QR Digital Name Card", desc: "Card with scannable digital profile.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" }
     ]
   },
   {
@@ -108,10 +108,10 @@ const CATEGORIES = [
     img: "assets/gifts.png",
     price: "RM45",
     products: [
-      { name: "Custom Printed Mug", desc: "Full-colour print, your logo or design.", icon: ICONS.gift },
-      { name: "Corporate Tumbler", desc: "Branded tumblers for staff & clients.", icon: ICONS.gift },
-      { name: "Tote Bag", desc: "Canvas tote, screen or full-colour print.", icon: ICONS.gift },
-      { name: "Lanyard", desc: "Custom woven or printed lanyards.", icon: ICONS.gift }
+      { name: "Custom Printed Mug", desc: "Full-colour print, your logo or design.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1594787318286-3d835c1cab83?w=400&h=300&fit=crop" },
+      { name: "Corporate Tumbler", desc: "Branded tumblers for staff & clients.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1594787318286-3d835c1cab83?w=400&h=300&fit=crop" },
+      { name: "Tote Bag", desc: "Canvas tote, screen or full-colour print.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1548453528-3e0a007d6bae?w=400&h=300&fit=crop" },
+      { name: "Lanyard", desc: "Custom woven or printed lanyards.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=300&fit=crop" }
     ]
   }
 ];
@@ -168,7 +168,9 @@ function renderProducts() {
     const card = document.createElement("button");
     card.className = "prod-card in";
     card.innerHTML = `
-      <div class="prod-icon" style="color: var(--cyan);">${p.icon}</div>
+      <div class="prod-thumb">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+      </div>
       <div class="prod-body">
         <h4>${p.name}</h4>
         <p>${p.desc}</p>
