@@ -1,262 +1,913 @@
-// ============================================
-// MATCH PRINT ADVERTISING — interactive service picker
-// ============================================
+/* ============================================
+   MATCH PRINT ADVERTISING — CSS
+   Color Palette: Pink (#D946A6), Cyan (#00B4D8), Dark Grey (#1F2937), White
+   ============================================ */
 
-const WHATSAPP_NUMBER = "60108870233";
+:root {
+  --pink: #D946A6;
+  --cyan: #00B4D8;
+  --dark: #1F2937;
+  --light-grey: #F3F4F6;
+  --border: #E5E7EB;
+  --text: #111827;
+  --text-muted: #6B7280;
+  --bg: #FFFFFF;
+}
 
-// Product icons as SVG symbols
-const ICONS = {
-  sticker: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l10 3v10a10 10 0 1 1-20 0V5l10-3z"/></svg>`,
-  banner: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 10h12M6 14h12"/></svg>`,
-  booklet: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
-  box: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>`,
-  design: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><path d="M19.07 4.93l-2.14 2.14M19.07 4.93l5 5M9.93 19.07l-5-5M4.93 19.07l2.14-2.14M9 2h6M2 9v6M22 9v6M9 22h6"/></svg>`,
-  flyer: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 8h8M8 13h8M8 18h4"/></svg>`,
-  namecard: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="10" rx="1"/><text x="12" y="13" text-anchor="middle" font-size="10" font-weight="bold">Card</text></svg>`,
-  gift: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/><path d="M12 11v4M8 11v4M16 11v4"/></svg>`
-};
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-const CATEGORIES = [
-  {
-    id: "labels",
-    name: "Labels & Stickers",
-    img: "assets/stickers.png",
-    price: "RM29",
-    products: [
-      { name: "Mirrorcoat Sticker", desc: "Reflective metallic finish for premium branding.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1599080871172-6e87dc89f6ca?w=400&h=300&fit=crop" },
-      { name: "Transparent Sticker", desc: "Clear film, great for glass & packaging.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=400&h=300&fit=crop" },
-      { name: "Vinyl Sticker", desc: "Durable, weatherproof, cut to any shape.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1599080871172-6e87dc89f6ca?w=400&h=300&fit=crop" },
-      { name: "White PP Sticker", desc: "Opaque white base, sharp colour print.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=400&h=300&fit=crop" },
-      { name: "Silver Sticker", desc: "Metallic silver finish for a bold look.", icon: ICONS.sticker, img: "https://images.unsplash.com/photo-1599080871172-6e87dc89f6ca?w=400&h=300&fit=crop" }
-    ]
-  },
-  {
-    id: "banner",
-    name: "Banner & Bunting",
-    img: "assets/banner.png",
-    price: "RM35",
-    products: [
-      { name: "PVC Banner", desc: "Outdoor-ready banner, eyelets included.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1578208194509-b8f96cb89bed?w=400&h=300&fit=crop" },
-      { name: "Bunting Flags", desc: "String buntings for launches & events.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=300&fit=crop" },
-      { name: "Roll-Up Banner", desc: "Portable stand banner for booths & events.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop" },
-      { name: "Event Backdrop", desc: "Large-format backdrop for stage & photo walls.", icon: ICONS.banner, img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" }
-    ]
-  },
-  {
-    id: "booklet",
-    name: "Booklets",
-    img: "assets/booklets.png",
-    price: "RM120",
-    products: [
-      { name: "Menu Booklet", desc: "Laminated, food-safe restaurant menus.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop" },
-      { name: "Company Profile Book", desc: "Multi-page saddle-stitch or perfect bound.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=400&h=300&fit=crop" },
-      { name: "Product Catalog", desc: "Full-colour catalog for your product range.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1544716278-ca5e3af4abd8?w=400&h=300&fit=crop" },
-      { name: "Guide / Manual Book", desc: "Manuals, guides, workbook printing.", icon: ICONS.booklet, img: "https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=400&h=300&fit=crop" }
-    ]
-  },
-  {
-    id: "packaging",
-    name: "Packaging & Bags",
-    img: "assets/packaging.png",
-    price: "RM80",
-    products: [
-      { name: "Custom Printed Box", desc: "Retail & shipping boxes, your branding.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop" },
-      { name: "Paper Bag", desc: "Branded carrier bags, various sizes.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop" },
-      { name: "Food / Product Pouch", desc: "Stand-up pouches for FnB & retail.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=400&h=300&fit=crop" },
-      { name: "Courier Bag", desc: "Custom-printed poly mailers.", icon: ICONS.box, img: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop" }
-    ]
-  },
-  {
-    id: "design",
-    name: "Design Services",
-    img: "assets/branding.png",
-    price: "Quote",
-    products: [
-      { name: "Logo Design", desc: "Original logo concepts for your brand.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" },
-      { name: "Brand Identity Package", desc: "Logo, colours, fonts & guidelines.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" },
-      { name: "Packaging Design", desc: "Print-ready artwork for box or label.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" },
-      { name: "Social Media Design Set", desc: "Templates for posts, stories & ads.", icon: ICONS.design, img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" }
-    ]
-  },
-  {
-    id: "marketing",
-    name: "Marketing Materials",
-    img: "assets/marketing.png",
-    price: "RM35",
-    products: [
-      { name: "Flyers", desc: "A5 / A6 flyers for promos & handouts.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1554132633-11cf85ecf1c0?w=400&h=300&fit=crop" },
-      { name: "Brochures", desc: "Tri-fold or bi-fold, full colour.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1507842217343-583f7270bfba?w=400&h=300&fit=crop" },
-      { name: "Table Calendar", desc: "Corporate desk calendars, custom design.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" },
-      { name: "Posters", desc: "A3 to large-format promotional posters.", icon: ICONS.flyer, img: "https://images.unsplash.com/photo-1540575467063-178f50002cbc?w=400&h=300&fit=crop" }
-    ]
-  },
-  {
-    id: "namecard",
-    name: "Name Cards",
-    img: "assets/namecard.png",
-    price: "RM29",
-    products: [
-      { name: "Standard Name Card", desc: "Matte or glossy, fast turnaround.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" },
-      { name: "Premium Textured Card", desc: "Cotton / linen stock, embossed feel.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" },
-      { name: "Metal Card", desc: "Stainless steel cards for a bold impression.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" },
-      { name: "QR Digital Name Card", desc: "Card with scannable digital profile.", icon: ICONS.namecard, img: "https://images.unsplash.com/photo-1611532736579-6b16e2b50449?w=400&h=300&fit=crop" }
-    ]
-  },
-  {
-    id: "gifts",
-    name: "Premium Gifts",
-    img: "assets/gifts.png",
-    price: "RM45",
-    products: [
-      { name: "Custom Printed Mug", desc: "Full-colour print, your logo or design.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1594787318286-3d835c1cab83?w=400&h=300&fit=crop" },
-      { name: "Corporate Tumbler", desc: "Branded tumblers for staff & clients.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1594787318286-3d835c1cab83?w=400&h=300&fit=crop" },
-      { name: "Tote Bag", desc: "Canvas tote, screen or full-colour print.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1548453528-3e0a007d6bae?w=400&h=300&fit=crop" },
-      { name: "Lanyard", desc: "Custom woven or printed lanyards.", icon: ICONS.gift, img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400&h=300&fit=crop" }
-    ]
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ============ TYPOGRAPHY ============ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Anton', sans-serif;
+  color: var(--dark);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--pink);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* ============ ACCENT COLORS ============ */
+
+.accent-pink {
+  color: var(--pink);
+}
+
+.accent-cyan {
+  color: var(--cyan);
+}
+
+/* ============ HEADER ============ */
+
+.topbar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-img {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.brand-text b {
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.brand-text span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.topbar-cta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.tel-link {
+  color: var(--text);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.tel-link:hover {
+  color: var(--pink);
+}
+
+.wa-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--pink);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.wa-pill:hover {
+  opacity: 0.9;
+}
+
+/* ============ HERO ============ */
+
+.hero {
+  padding: 5rem 0;
+  background: var(--bg);
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero-image {
+  display: none;
+}
+
+.hero-eyebrow {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-eyebrow b {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-image {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============ BUTTONS ============ */
+
+.btn-primary {
+  background: var(--pink);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border: 2px solid var(--dark);
+  padding: 0.85rem 1.75rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  background: var(--dark);
+  color: white;
+}
+
+/* ============ SECTIONS ============ */
+
+.section {
+  padding: 4rem 0;
+  background: var(--bg);
+}
+
+.section-alt {
+  background: var(--light-grey);
+}
+
+#form-section {
+  transition: all 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--pink);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.product-context {
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ============ CATEGORY GRID ============ */
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.cat-card {
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.cat-card:hover {
+  border-color: var(--pink);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.cat-card.active {
+  border-color: var(--pink);
+  box-shadow: 0 8px 16px rgba(217, 70, 166, 0.15);
+}
+
+.cat-thumb {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--light-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cat-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cat-body {
+  padding: 1.5rem;
+}
+
+.cat-body h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+}
+
+.price-tag {
+  display: flex;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: var(--pink);
+  font-size: 1.1rem;
+}
+
+.from {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ============ PRODUCT GRID ============ */
+
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.prod-card {
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+}
+
+.prod-card.in {
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.prod-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 8px 16px rgba(0, 180, 216, 0.1);
+}
+
+.prod-card.active {
+  border-color: var(--cyan);
+  background: rgba(0, 180, 216, 0.05);
+}
+
+.prod-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prod-thumb {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: var(--light-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.prod-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prod-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.prod-body h4 {
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+.prod-body p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.prod-select {
+  display: inline-block;
+  color: var(--pink);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* ============ ORDER FORM ============ */
+
+.order-wrap {
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.order-summary {
+  background: var(--light-grey);
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.order-summary span {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.order-summary b {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+/* ============ FORM FIELDS ============ */
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.field input,
+.field textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.form-hint {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}
+
+/* ============ PROCESS SECTION ============ */
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.process-item {
+  background: var(--bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.process-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.process-num {
+  width: 50px;
+  height: 50px;
+  background: var(--pink);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 1rem;
+}
+
+.process-item h3 {
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+}
+
+.process-item p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ============ WHY US SECTION ============ */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.why-item {
+  text-align: center;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.why-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.why-item h3 {
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+}
+
+.why-item p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ============ CLIENT LOGOS ============ */
+
+.client-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem 0;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.client-row img {
+  height: 50px;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.client-row img:hover {
+  opacity: 1;
+}
+
+/* ============ FOOTER ============ */
+
+footer {
+  background: var(--dark);
+  color: white;
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 2rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.footer-logo {
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-col b {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.footer-col p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.footer-col h5 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.footer-col a {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: var(--pink);
+}
+
+.social-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============ UTILITIES ============ */
+
+.float-wa {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  background: var(--pink);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 50;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(217, 70, 166, 0.3);
+}
+
+.float-wa:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(217, 70, 166, 0.4);
+}
+
+.float-wa svg {
+  width: 28px;
+  height: 28px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  background: var(--dark);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  z-index: 40;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ============ ANIMATIONS ============ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-];
-
-const state = { category: null, product: null };
-
-// Initialize sections visibility
-document.getElementById("products-section").style.display = "none";
-document.getElementById("form-section").style.display = "none";
-
-// ============= CATEGORY RENDERING =============
-const catGrid = document.getElementById("cat-grid");
-CATEGORIES.forEach(cat => {
-  const card = document.createElement("button");
-  card.className = "cat-card";
-  card.innerHTML = `
-    <div class="cat-thumb">
-      <img src="${cat.img}" alt="${cat.name}" loading="lazy">
-    </div>
-    <div class="cat-body">
-      <h3>${cat.name}</h3>
-      <span class="price-tag"><span class="from">from</span> ${cat.price}</span>
-    </div>
-  `;
-  card.addEventListener("click", () => selectCategory(cat.id, card));
-  catGrid.appendChild(card);
-});
-
-function selectCategory(id, cardEl) {
-  state.category = CATEGORIES.find(c => c.id === id);
-  state.product = null;
-
-  document.querySelectorAll(".cat-card").forEach(c => c.classList.remove("active"));
-  cardEl.classList.add("active");
-
-  renderProducts();
-
-  document.getElementById("products-section").style.display = "block";
-  document.getElementById("form-section").style.display = "none";
-
-  setTimeout(() => {
-    document.getElementById("products-section").scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 100);
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-// ============= PRODUCT RENDERING =============
-function renderProducts() {
-  const wrap = document.getElementById("prod-grid");
-  wrap.innerHTML = "";
-  document.getElementById("product-context").innerHTML =
-    `Choose a product from <b>${state.category.name}</b>`;
+/* ============ RESPONSIVE ============ */
 
-  state.category.products.forEach(p => {
-    const card = document.createElement("button");
-    card.className = "prod-card in";
-    card.innerHTML = `
-      <div class="prod-thumb">
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
-      </div>
-      <div class="prod-body">
-        <h4>${p.name}</h4>
-        <p>${p.desc}</p>
-        <span class="prod-select">Select →</span>
-      </div>
-    `;
-    card.addEventListener("click", () => selectProduct(p, card));
-    wrap.appendChild(card);
-  });
-}
-
-function selectProduct(product, cardEl) {
-  state.product = product;
-  document.querySelectorAll(".prod-card").forEach(c => {
-    c.classList.remove("active");
-    c.querySelector(".prod-select").textContent = "Select →";
-  });
-  cardEl.classList.add("active");
-  cardEl.querySelector(".prod-select").textContent = "Selected ✓";
-
-  updateOrderSummary();
-
-  document.getElementById("form-section").style.display = "block";
-  setTimeout(() => {
-    document.getElementById("form-section").scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 100);
-}
-
-function updateOrderSummary() {
-  document.getElementById("summary-category").textContent = state.category.name;
-  document.getElementById("summary-product").textContent = state.product.name;
-}
-
-// ============= FORM SUBMISSION =============
-const form = document.getElementById("order-form");
-form.addEventListener("submit", e => {
-  e.preventDefault();
-
-  if (!state.category || !state.product) {
-    showToast("Pick a category and product first");
-    document.getElementById("categories").scrollIntoView({ behavior: "smooth" });
-    return;
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
   }
 
-  const name = document.getElementById("f-name").value.trim();
-  const phone = document.getElementById("f-phone").value.trim();
-  const company = document.getElementById("f-company").value.trim();
-  const qty = document.getElementById("f-qty").value.trim();
-  const notes = document.getElementById("f-notes").value.trim();
-
-  if (!name || !phone) {
-    showToast("Name and phone number are required");
-    return;
+  h2 {
+    font-size: 1.75rem;
   }
 
-  const lines = [
-    "*New Job Order — Match Print Advertising*",
-    "",
-    `*Category:* ${state.category.name}`,
-    `*Product:* ${state.product.name}`,
-    `*Quantity:* ${qty || "-"}`,
-    "",
-    `*Name:* ${name}`,
-    `*Company:* ${company || "-"}`,
-    `*Phone:* ${phone}`,
-    notes ? `*Notes:* ${notes}` : null
-  ].filter(Boolean);
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 
-  const message = encodeURIComponent(lines.join("\n"));
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+  .hero-image {
+    order: -1;
+  }
 
-  window.open(url, "_blank");
-  showToast("Opening WhatsApp with your job order…");
-});
+  .topbar-inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-// ============= TOAST NOTIFICATIONS =============
-let toastTimer;
-function showToast(msg) {
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove("show"), 3000);
+  .topbar-cta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .order-wrap {
+    padding: 1.5rem;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .cat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prod-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .float-wa {
+    bottom: 1rem;
+    right: 1rem;
+    width: 50px;
+    height: 50px;
+  }
 }
 
-// ============= HERO CTA =============
-document.getElementById("hero-cta").addEventListener("click", () => {
-  document.getElementById("categories").scrollIntoView({ behavior: "smooth" });
-});
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .section {
+    padding: 2rem 0;
+  }
+
+  .prod-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .client-row {
+    gap: 1rem;
+  }
+
+  .client-row img {
+    height: 40px;
+  }
+}
