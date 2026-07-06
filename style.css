@@ -184,7 +184,7 @@ a:hover {
   margin: 0 auto;
   padding: 0 2rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 4rem;
   align-items: center;
 }
@@ -192,6 +192,11 @@ a:hover {
 .hero-content {
   display: flex;
   flex-direction: column;
+  text-align: center;
+}
+
+.hero-image {
+  display: none;
 }
 
 .hero-eyebrow {
