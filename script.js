@@ -1,5 +1,3 @@
-script js
-
 // ============================================
 // MATCH PRINT ADVERTISING — interactive service picker
 // ============================================
