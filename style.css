@@ -14,10 +14,11 @@
   --bg: #FFFFFF;
 }
 
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 html {
@@ -1028,4 +1029,88 @@ footer {
 .step-connector.completed {
   background: var(--cyan);
 }
+}
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-item { padding: 1rem; }
+
+.stat-number {
+  font-family: 'Anton', sans-serif;
+  font-size: 2.5rem;
+  color: var(--pink);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* Progress Steps */
+.progress-container {
+  background: var(--bg);
+  padding: 0 0 3rem;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  background: var(--light-grey);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.step-number {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.step.active .step-number {
+  background: var(--pink);
+  color: white;
+}
+
+.step.completed .step-number {
+  background: var(--cyan);
+  color: white;
+}
+
+.step-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.step-connector {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  margin: 0 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.step-connector.completed {
+  background: var(--cyan);
 }
