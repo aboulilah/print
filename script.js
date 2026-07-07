@@ -229,3 +229,185 @@ function showToast(msg) {
 document.getElementById("hero-cta").addEventListener("click", () => {
   document.getElementById("categories").scrollIntoView({ behavior: "smooth" });
 });
+// ============= ANIMATED COUNTERS =============
+function animateCounter(element) {
+  const target = parseInt(element.getAttribute('data-target'));
+  let current = 0;
+  const increment = target / 100;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      element.textContent = target.toLocaleString();
+      clearInterval(timer);
+    } else {
+      element.textContent = Math.floor(current).toLocaleString();
+    }
+  }, 20);
+}
+
+// Trigger counters when visible
+const statsSection = document.querySelector('.stats-section');
+if (statsSection) {
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('.stat-number');
+        counters.forEach(counter => animateCounter(counter));
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  counterObserver.observe(statsSection);
+}
+
+// ============= PROGRESS STEPS UPDATE =============
+function updateProgressStep(stepNumber) {
+  // Show progress container
+  const progressContainer = document.getElementById('progress-container');
+  if (progressContainer) {
+    progressContainer.style.display = 'block';
+  }
+  
+  // Reset all steps
+  document.querySelectorAll('.step').forEach(step => {
+    step.classList.remove('active', 'completed');
+    const stepNum = step.id.split('-')[1];
+    step.querySelector('.step-number').textContent = stepNum;
+  });
+  
+  document.querySelectorAll('.step-connector').forEach(connector => {
+    connector.classList.remove('completed');
+  });
+  
+  // Mark completed steps
+  for (let i = 1; i < stepNumber; i++) {
+    const step = document.getElementById(`step-${i}`);
+    if (step) {
+      step.classList.add('completed');
+      step.querySelector('.step-number').textContent = '✓';
+    }
+    
+    const connector = document.getElementById(`connector-${i}`);
+    if (connector) {
+      connector.classList.add('completed');
+    }
+  }
+  
+  // Activate current step
+  const currentStep = document.getElementById(`step-${stepNumber}`);
+  if (currentStep) {
+    currentStep.classList.add('active');
+  }
+}
+
+// Update progress when category/product selected
+const originalSelectCategory = window.selectCategory;
+window.selectCategory = function(id, cardEl) {
+  originalSelectCategory(id, cardEl);
+  updateProgressStep(2);
+};
+
+const originalSelectProduct = window.selectProduct;
+window.selectProduct = function(product, cardEl) {
+  originalSelectProduct(product, cardEl);
+  updateProgressStep(3);
+};
+
+// ============= QUICK VIEW MODAL =============
+let currentModalProduct = null;
+
+function openQuickView(product) {
+  currentModalProduct = product;
+  const modal = document.getElementById('quickViewModal');
+  document.getElementById('modalImage').src = product.img || 'assets/placeholder.png';
+  document.getElementById('modalImage').alt = product.name;
+  document.getElementById('modalTitle').textContent = product.name;
+  document.getElementById('modalDesc').textContent = product.desc;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('quickViewModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  currentModalProduct = null;
+}
+
+function selectFromModal() {
+  if (currentModalProduct) {
+    // Find and click the product card
+    const cards = document.querySelectorAll('.prod-card');
+    cards.forEach(card => {
+      if (card.querySelector('h4').textContent === currentModalProduct.name) {
+        card.click();
+      }
+    });
+    closeModal();
+  }
+}
+
+// Close modal on outside click
+const modal = document.getElementById('quickViewModal');
+if (modal) {
+  modal.addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+}
+
+// Add quick view button to product cards
+function addQuickViewButtons() {
+  const cards = document.querySelectorAll('.prod-card');
+  cards.forEach(card => {
+    if (!card.querySelector('.quick-view-btn')) {
+      const quickViewBtn = document.createElement('button');
+      quickViewBtn.className = 'quick-view-btn';
+      quickViewBtn.innerHTML = '👁️ Quick View';
+      quickViewBtn.onclick = function(e) {
+        e.stopPropagation();
+        const productName = card.querySelector('h4').textContent;
+        const productDesc = card.querySelector('p').textContent;
+        const productImg = card.querySelector('img').src;
+        openQuickView({ name: productName, desc: productDesc, img: productImg });
+      };
+      card.querySelector('.prod-thumb').appendChild(quickViewBtn);
+    }
+  });
+}
+
+// ============= SCROLL ANIMATIONS =============
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+// Observe elements for scroll animation
+function initScrollAnimations() {
+  const elementsToAnimate = document.querySelectorAll('.cat-card, .prod-card, .process-item, .why-item, .trust-item, .stat-item');
+  elementsToAnimate.forEach(el => {
+    el.classList.add('animate-on-scroll');
+    scrollObserver.observe(el);
+  });
+}
+
+// Initialize scroll animations on page load
+document.addEventListener('DOMContentLoaded', function() {
+  initScrollAnimations();
+  updateProgressStep(1);
+});
+
+// Re-run when products are rendered
+const originalRenderProducts = window.renderProducts;
+window.renderProducts = function() {
+  originalRenderProducts();
+  setTimeout(() => {
+    addQuickViewButtons();
+    initScrollAnimations();
+  }, 100);
+};
