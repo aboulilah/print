@@ -1116,9 +1116,9 @@ footer {
 }
 /* Add spacing between stats and progress sections */
 #stats-section {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .progress-container {
-  padding-top: 2rem;
+  padding-top: 3rem;
 }
