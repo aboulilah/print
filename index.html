@@ -44,12 +44,66 @@
         <a class="btn-secondary" href="https://wa.me/60108870233" target="_blank" rel="noopener">Chat With Us</a>
       </div>
     </div>
-
-    <div class="hero-image">
-      <!-- No image needed for hero -->
-    </div>
   </div>
 </section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-items">
+      <div class="trust-item">
+        <span class="trust-icon">⭐</span>
+        <div class="trust-text">
+          <b>20 Years</b>
+          <span>Experience</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">✓</span>
+        <div class="trust-text">
+          <b>MOF Registered</b>
+          <span>002925438-M</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🚚</span>
+        <div class="trust-text">
+          <b>Fast Delivery</b>
+          <span>Same-Day Available</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🌱</span>
+        <div class="trust-text">
+          <b>Eco-Friendly</b>
+          <span>Soy-Based Inks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRESS STEPS -->
+<div class="progress-container" id="progress-container" style="display: none;">
+  <div class="container">
+    <div class="progress-steps">
+      <div class="step completed" id="step-1">
+        <div class="step-number">1</div>
+        <div class="step-label">Choose Category</div>
+      </div>
+      <div class="step-connector completed" id="connector-1"></div>
+      <div class="step" id="step-2">
+        <div class="step-number">2</div>
+        <div class="step-label">Select Product</div>
+      </div>
+      <div class="step-connector" id="connector-2"></div>
+      <div class="step" id="step-3">
+        <div class="step-number">3</div>
+        <div class="step-label">Send Order</div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- TRUST BAR -->
 <div class="trust-bar">
@@ -344,5 +398,44 @@
 </section>
 
 <script src="script.js"></script>
+  <!-- QUICK VIEW MODAL -->
+<div class="modal-overlay" id="quickViewModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-body">
+      <img src="" alt="" id="modalImage" class="modal-image">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="selectFromModal()">Select This Product</button>
+        <a href="https://wa.me/60108870233" class="btn-secondary">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ANIMATED COUNTERS SECTION -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number" data-target="5000">0</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="98">0</div>
+        <div class="stat-label">% Happy Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="500">0</div>
+        <div class="stat-label">Corporate Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" data-target="24">0</div>
+        <div class="stat-label">Hour Turnaround</div>
+      </div>
+    </div>
+  </div>
+</section>
 </body>
 </html>
