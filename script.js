@@ -139,10 +139,14 @@ function selectCategory(id, cardEl) {
   renderProducts();
   document.getElementById("products-section").style.display = "block";
   document.getElementById("form-section").style.display = "none";
+  
+  updateProgress(2); // Updates progress to step 2
+  
   setTimeout(() => {
     document.getElementById("products-section").scrollIntoView({ behavior: "smooth", block: "start" });
   }, 100);
 }
+
 
 // ============= PRODUCT RENDERING =============
 function renderProducts() {
@@ -169,6 +173,9 @@ function selectProduct(product, cardEl) {
   cardEl.querySelector(".prod-select").textContent = "Selected ✓";
   updateOrderSummary();
   document.getElementById("form-section").style.display = "block";
+  
+  updateProgress(3); // Updates progress to step 3
+  
   setTimeout(() => {
     document.getElementById("form-section").scrollIntoView({ behavior: "smooth", block: "start" });
   }, 100);
@@ -229,3 +236,68 @@ function showToast(msg) {
 document.getElementById("hero-cta").addEventListener("click", () => {
   document.getElementById("categories").scrollIntoView({ behavior: "smooth" });
 });
+// ============= PROGRESS STEPS LOGIC =============
+function updateProgress(stepNumber) {
+  document.querySelectorAll('.step').forEach(step => {
+    step.classList.remove('active', 'completed');
+  });
+  document.querySelectorAll('.step-connector').forEach(connector => {
+    connector.classList.remove('completed');
+  });
+
+  for (let i = 1; i <= 3; i++) {
+    const step = document.getElementById(`step-${i}`);
+    if (i < stepNumber) {
+      step.classList.add('completed');
+      step.querySelector('.step-number').textContent = '✓';
+    } else if (i === stepNumber) {
+      step.classList.add('active');
+      step.querySelector('.step-number').textContent = i;
+    } else {
+      step.querySelector('.step-number').textContent = i;
+    }
+  }
+
+  for (let i = 1; i < stepNumber; i++) {
+    const connector = document.getElementById(`connector-${i}`);
+    if (connector) connector.classList.add('completed');
+  }
+}
+
+// ============= ANIMATED COUNTERS =============
+function animateValue(element, start, end, duration, suffix) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    const currentVal = Math.floor(progress * (end - start) + start);
+    element.innerHTML = currentVal + suffix;
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      element.innerHTML = end + suffix;
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+const statsSection = document.getElementById('stats-section');
+if (statsSection) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll('.stat-number');
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'));
+          const suffix = counter.getAttribute('data-suffix') || '';
+          animateValue(counter, 0, target, 1500, suffix);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  observer.observe(statsSection);
+}
+
+// Initialize progress on page load
+updateProgress(1);
