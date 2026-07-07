@@ -1,3 +1,4 @@
+style css
 /* ============================================
    MATCH PRINT ADVERTISING — CSS
    Color Palette: Pink (#D946A6), Cyan (#00B4D8), Dark Grey (#1F2937), White
@@ -174,9 +175,15 @@ a:hover {
 
 /* ============ HERO ============ */
 
-.hero {
-  padding: 5rem 0;
-  background: var(--bg);
+ .hero {
+  padding: 6rem 0 8rem;
+  background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%), 
+              url('assets/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-inner {
@@ -185,14 +192,17 @@ a:hover {
   padding: 0 2rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
+  gap: 0;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: left;
+  max-width: 650px;
 }
 
 .hero-image {
@@ -200,22 +210,33 @@ a:hover {
 }
 
 .hero-eyebrow {
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1.5rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .hero-eyebrow b {
-  color: var(--dark);
+  color: var(--cyan);
   font-weight: 700;
 }
 
+.hero h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
 .hero-sub {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  margin-bottom: 2rem;
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 2.5rem;
   line-height: 1.8;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .hero-ctas {
@@ -224,117 +245,28 @@ a:hover {
   flex-wrap: wrap;
 }
 
-.hero-image {
-  width: 100%;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.hero-image img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  display: block;
-}
-
-/* ============ PROGRESS STEPS (NEW) ============ */
-
-.progress-container {
-  background: var(--bg);
-  padding: 2rem 0 0;
-}
-
-.progress-steps {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--light-grey);
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-}
-
-.step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  flex: 1;
-  transition: all 0.3s ease;
-}
-
-.step-number {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: var(--border);
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-}
-
-.step.active .step-number {
-  background: var(--pink);
-  color: white;
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(217, 70, 166, 0.3);
-}
-
-.step.completed .step-number {
-  background: var(--cyan);
-  color: white;
-}
-
-.step-label {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  text-align: center;
-  transition: color 0.3s ease;
-}
-
-.step.active .step-label {
-  color: var(--pink);
-  font-weight: 700;
-}
-
-.step-connector {
-  flex: 1;
-  height: 3px;
-  background: var(--border);
-  margin: 0 1rem;
-  margin-bottom: 1.5rem;
-  transition: background 0.3s ease;
-}
-
-.step-connector.completed {
-  background: var(--cyan);
-}
-
 /* ============ BUTTONS ============ */
 
 .btn-primary {
   background: var(--pink);
   color: white;
   border: none;
-  padding: 1rem 2rem;
-  border-radius: 6px;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.3s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(217, 70, 166, 0.4);
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  background: #c43a94;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(217, 70, 166, 0.5);
 }
 
 .btn-primary:active {
@@ -342,21 +274,22 @@ a:hover {
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--text);
-  border: 2px solid var(--dark);
-  padding: 0.85rem 1.75rem;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 0.9rem 2.25rem;
+  border-radius: 8px;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s;
-  display: inline-block;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  background: var(--dark);
-  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+  transform: translateY(-2px);
 }
 
 /* ============ SECTIONS ============ */
@@ -905,9 +838,39 @@ footer {
     font-size: 1.75rem;
   }
 
+  .hero {
+    padding: 4rem 0 6rem;
+    background-attachment: scroll;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
   .hero-inner {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 
   .hero-image {
@@ -932,16 +895,6 @@ footer {
     padding: 1.5rem;
   }
 
-  .hero-ctas {
-    flex-direction: column;
-  }
-
-  .btn-primary,
-  .btn-secondary {
-    width: 100%;
-    text-align: center;
-  }
-
   .cat-grid {
     grid-template-columns: 1fr;
   }
@@ -961,21 +914,6 @@ footer {
     right: 1rem;
     width: 50px;
     height: 50px;
-  }
-
-  /* Progress Responsive */
-  .progress-steps {
-    padding: 1rem;
-  }
-  
-  .step-label {
-    font-size: 0.75rem;
-  }
-  
-  .step-number {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
   }
 }
 
@@ -1002,10 +940,5 @@ footer {
 
   .client-row img {
     height: 40px;
-  }
-  
-  /* Progress Mobile */
-  .step-connector {
-    margin: 0 0.5rem;
   }
 }
