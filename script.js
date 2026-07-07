@@ -165,8 +165,8 @@ function renderProducts() {
 
 function selectProduct(product, cardEl) {
   state.product = product;
-  document.querySelectorAll(".prod-card").forEach(c => {
-    c.classList.remove("active");
+document.querySelectorAll(".prod-card").forEach(c => {
+  c.classList.remove("active");
     c.querySelector(".prod-select").textContent = "Select →";
   });
   cardEl.classList.add("active");
