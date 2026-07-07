@@ -1114,3 +1114,11 @@ footer {
 .step-connector.completed {
   background: var(--cyan);
 }
+/* Add spacing between stats and progress sections */
+#stats-section {
+  margin-bottom: 3rem;
+}
+
+.progress-container {
+  padding-top: 2rem;
+}
